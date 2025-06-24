@@ -10,7 +10,7 @@ df = pd.read_csv('./SolarPrediction.csv')
 
 
 # Drop unused columns
-df.drop(['Time', 'TimeSunRise', 'TimeSunSet', 'TimeSunRise2', 'TimeSunSet2', 'UNIXTime', 'Data'], axis=1, inplace=True)
+df.drop(['Time', 'TimeSunRise', 'TimeSunSet', 'UNIXTime', 'Data'], axis=1, inplace=True)
 
 # Prepare features and target
 X = df.drop('Radiation', axis=1)
