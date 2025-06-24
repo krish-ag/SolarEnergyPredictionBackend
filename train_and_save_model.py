@@ -8,23 +8,9 @@ import joblib
 # Read the dataset
 df = pd.read_csv('./SolarPrediction.csv')
 
-# Convert columns to datetime
-df['Date'] = pd.to_datetime(df['Data'])
-df.drop('Data', axis=1, inplace=True)
-df['Time'] = pd.to_datetime(df['UNIXTime'], unit='s')
-df['TimeSunRise2'] = pd.to_datetime(df['TimeSunRise'], format='%H:%M:%S')
-df['TimeSunSet2'] = pd.to_datetime(df['TimeSunSet'], format='%H:%M:%S')
-
-# Feature engineering: extract useful time-based features
-df['Hour'] = df['Time'].dt.hour
-df['Minute'] = df['Time'].dt.minute
-df['SunRise_Hour'] = df['TimeSunRise2'].dt.hour
-df['SunRise_Minute'] = df['TimeSunRise2'].dt.minute
-df['SunSet_Hour'] = df['TimeSunSet2'].dt.hour
-df['SunSet_Minute'] = df['TimeSunSet2'].dt.minute
 
 # Drop unused columns
-df.drop(['Time', 'TimeSunRise', 'TimeSunSet', 'TimeSunRise2', 'TimeSunSet2', 'UNIXTime', 'Date'], axis=1, inplace=True)
+df.drop(['Time', 'TimeSunRise', 'TimeSunSet', 'TimeSunRise2', 'TimeSunSet2', 'UNIXTime', 'Data'], axis=1, inplace=True)
 
 # Prepare features and target
 X = df.drop('Radiation', axis=1)
